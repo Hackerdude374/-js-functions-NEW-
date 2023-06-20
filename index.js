@@ -290,3 +290,116 @@ function isAZero(element){
 }
 
 console.log(sortie(theArray, isAZero));
+console.log("4 miscellaneous problems");
+/*
+Sum of a Range
+Reversing an Array
+A List
+Deep Comparison
+*/
+console.log("-----------SUm of a range--------------");
+/*Write a range function that takes two arguments, start and end, and returns an array containing all the numbers from start up to (and including) end.
+
+Next, write a sum function that takes an array of numbers and returns the sum of these numbers. Run the example program and see whether it does indeed return 55.
+
+As a bonus assignment, modify your range function to take an optional third argument that indicates the “step” value used when building the array. If no step is given, the elements go up by increments of one, corresponding to the old behavior. The function call range(1, 10, 2) should return [1, 3, 5, 7, 9]. Make sure it also works with negative step values so that range(5, 2, -1) produces [5, 4, 3, 2].*/
+
+
+function makeRange(start, end, interval){
+  let result = [];
+  let block = end / interval;
+let element = start;
+  let sum = 0;
+  for(let i= 0; i < block; i++){
+    result.push(element);
+    sum = sum+element;
+    element = element+interval;
+    
+  }
+  console.log("the total sum is " + sum);
+  return result;
+}
+
+
+console.log(makeRange(1,10,2));
+console.log("-----------------reverse array---------------");
+
+function reverseArray(array){
+  let result = [];
+  for(i = array.length-1; i>-1; i--){
+    result.push(array[i]);
+  }
+  return result;
+}
+
+
+let fefeewwef=[1,2,3];
+console.log(reverseArray(fefeewwef));
+
+console.log("-----------------A List--------------------")
+
+function ArrayToList(array){
+ let list = null;
+  for (let i = array.length - 1; i > -1; i--) {
+    list ={ 
+      value: array[i],
+      rest: list
+      };
+  }
+  return list;
+
+}
+
+function ListToArray(array){
+  let result = [];
+  for (let node = list; node; node = node.rest) { //nodes are part of  a list and are not referred to by indexes like i.
+    result.push(node.value);
+  }
+  return result;
+}
+
+
+function prependList(list1, element) {
+  if (!list1) { //if list has no elements, the element becomes the first.
+    return element;
+  } 
+  
+    return { 
+      value: list1.value, 
+      rest: prependList(list1.rest, element) 
+    };
+  
+}
+
+function nth(list, position) {
+  if (!list) { //no list exists, return undefined (no element found)
+    return undefined;
+  } 
+  else if (position === 0) { //only one element so simply return the element
+    return list.value;
+  } 
+  else {
+    return nth(list.rest, position - 1); //iterate backwards until position found.
+  }
+}
+
+console.log("-------------------DEEP COMPARISON-----------");
+
+function deepEqual(e1,e2) {
+  if (e1 === e2) { //base 
+    return true;
+  }
+  //compare list size by keys if not equal then false
+  let keys1 = Object.keys(e1);
+  let keys2 = Object.keys(e2);
+
+  if (keys1.length !== keys2.length) {
+    return false;
+  }
+  //
+  if (typeof e1 !== "object" || typeof e1!== "object") {
+    return false;
+  }
+
+  return true;
+}
